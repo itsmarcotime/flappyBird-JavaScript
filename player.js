@@ -13,7 +13,7 @@ export class Player {
     update(input) { 
         // jumping movement 
         if (input.includes(' ')) {
-            this.vy -= 5;
+            this.vy -= 3;
         };
 
         this.y += this.vy;
