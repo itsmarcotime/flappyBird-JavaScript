@@ -6,28 +6,23 @@ export class Player {
         this.x = 20;
         this.y = 230;
         this.vy = 0;
-        this.weight = 1;
+        this.weight = 1.2;
         this.image = player;
     }
 
     update(input) { 
         // jumping movement 
         if (input.includes(' ')) {
-            this.vy -= 3;
+            this.vy -= 3.3;
         };
-
         this.y += this.vy;
+        // applyGravity()
 
         if (!this.hitGround()) {
             this.vy += this.weight;
         } else {
             // also add end game function right here
             this.vy = 0;
-        };
-        
-        // top boundaries 
-        if (this.y < 0) {
-            this.y = 0;
         };
     };
 
@@ -40,5 +35,14 @@ export class Player {
 
     hitGround() {
         return this.y >= this.game.height - this.height;
+    };
+    
+    applyGravity() {
+        this.vy = this.vy + this.weight;
+        document.addEventListener("keydown", (e) => {
+            if (e.key == ' ') {
+                this.vy = -7.6
+            }
+        });
     };
 };
