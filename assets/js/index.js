@@ -4,13 +4,14 @@ import { InputStuff } from './input.js';
 window.addEventListener('load', function() {
     const canvas = document.getElementById("canvas1");
     const ctx = canvas.getContext('2d');
-    canvas.width = 1024;
-    canvas.height = 576;
+    canvas.width = 360;
+    canvas.height = 640;
 
     class Game {
         constructor(width, height) {
             this.width = width;
             this.height = height;
+            this.score = 0;
             this.player = new Player(this);
             this.input = new InputStuff();
         };
