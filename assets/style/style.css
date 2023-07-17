@@ -15,3 +15,11 @@ body {
 #player {
     display: none;
 }
+
+#topPipe {
+    display: none;
+}
+
+#bottomPipe {
+    display: none;
+}

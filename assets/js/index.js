@@ -1,5 +1,6 @@
 import { Player } from './player.js';
 import { InputStuff } from './input.js';
+import { Pipes, BottomPipe } from './pipes.js';
 
 window.addEventListener('load', function() {
     const canvas = document.getElementById("canvas1");
@@ -14,14 +15,21 @@ window.addEventListener('load', function() {
             this.score = 0;
             this.player = new Player(this);
             this.input = new InputStuff();
+            // this.topPipe = new Pipes(this);
+            // this.bottomPipe = new BottomPipe();
         };
 
         update() {
             this.player.update(this.input.keys);
+            // this.topPipe.update();
+            // this.bottomPipe.update();
         };
 
         draw(context) {
             this.player.draw(context);
+            // this.topPipe.draw(context);
+            // this.bottomPipe.draw(context);
+            
         };
     };
 
@@ -36,4 +44,10 @@ window.addEventListener('load', function() {
         requestAnimationFrame(animate);
     };
     animate();
+
+    setInterval(placePipes, 1500);
+
+    function placePipes() {
+
+    };
 });
