@@ -9,27 +9,27 @@ window.addEventListener('load', function() {
     canvas.height = 640;
 
     class Game {
-        constructor(width, height) {
-            this.width = width;
-            this.height = height;
-            this.score = 0;
-            this.player = new Player(this);
-            this.input = new InputStuff();
-            this.topPipes = new TopPipes(this);
-        };
+      constructor(width, height) {
+        this.width = width;
+        this.height = height;
+        this.score = 0;
+        this.player = new Player(this);
+        this.input = new InputStuff();
+        this.topPipes = new TopPipes(this);
+      };
 
-        update() {
-            this.player.update(this.input.keys);
-            this.topPipes.update();
-            // this.bottomPipe.update();
-        };
+      update() {
 
-        draw(context) {
-            this.player.draw(context);
-            this.topPipes.draw(context);
-            // this.bottomPipe.draw(context);
-            
-        };
+        this.player.update(this.input.keys);
+        this.topPipes.update();
+        // this.bottomPipe.update();
+      };
+
+      draw(context) {
+        this.player.draw(context);
+        this.topPipes.draw(context);
+        // this.bottomPipe.draw(context);
+      };
     };
 
     const game = new Game(canvas.width, canvas.height);

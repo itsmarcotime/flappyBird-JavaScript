@@ -9,21 +9,30 @@ export class TopPipes {
     this.topPipeImage = topPipe;
     this.isPassed = false;
     this.velocityX = -2;
-  }
+  };
 
   update() {
-    setInterval(placePipes, 1500);
+    setInterval(() => placePipes.call(this), 1500);
+    const placePipes = () => {
+      let topPipe = {
+        img: this.topPipeImage,
+        x: this.pipeX,
+        y: this.pipeX,
+        width: this.pipeWidth,
+        height: this.pipeHeight,
+        passed: false
+      };
 
-    // function placePipes() {
-    //   this.pipeArray.push(new TopPipes());
-    // }
-  }
+      this.pipeArray.push(topPipe);
+    };
+    
+  };
 
   draw(context) {
     // loop through pipe array
     for (let i = 0; i < this.pipeArray.length; i++) {
-      this.pipeX += this.velocityX;
-      context.drawImage(this.topPipeImage, this.pipeX, this.pipeY, this.pipeWidth, this.pipeHeight);
+        this.pipeX += this.velocityX;
+        context.drawImage(this.topPipeImage, this.pipeX, this.pipeY, this.pipeWidth, this.pipeHeight);
     };
   };
 };
