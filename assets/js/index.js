@@ -16,6 +16,15 @@ window.addEventListener('load', function() {
         this.player = new Player(this);
         this.input = new InputStuff();
         this.topPipes = new TopPipes(this);
+
+        this.spawnPipeInterval = 1500; // Adjust the interval as needed
+        this.lastSpawnTime = 0;
+      };
+
+      spawnPipes() {
+        this.topPipes.placePipes(); // Spawn a new pipe
+        this.lastSpawnTime = Date.now();
+        setTimeout(() => this.spawnPipes(), this.spawnPipeInterval);
       };
 
       update() {
@@ -26,6 +35,7 @@ window.addEventListener('load', function() {
       };
 
       draw(context) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.player.draw(context);
         this.topPipes.draw(context);
         // this.bottomPipe.draw(context);
@@ -33,6 +43,7 @@ window.addEventListener('load', function() {
     };
 
     const game = new Game(canvas.width, canvas.height);
+    game.spawnPipes();
 
     console.log(game);
 

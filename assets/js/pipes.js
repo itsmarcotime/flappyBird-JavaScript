@@ -11,45 +11,64 @@ export class TopPipes {
     this.velocityX = -2;
   };
 
-  update() {
-    setInterval(() => placePipes.call(this), 1500);
-    const placePipes = () => {
-      let topPipe = {
-        img: this.topPipeImage,
-        x: this.pipeX,
-        y: this.pipeX,
-        width: this.pipeWidth,
-        height: this.pipeHeight,
-        passed: false
-      };
-
-      this.pipeArray.push(topPipe);
+  placePipes() {
+    let topPipe = {
+      img: this.topPipeImage,
+      x: this.pipeX,
+      y: this.pipeY,
+      width: this.pipeWidth,
+      height: this.pipeHeight,
+      passed: false,
     };
-    
+    this.pipeArray.push(topPipe);
+  }
+
+  update() {
+    // Update pipe positions
+    for (let i = 0; i < this.pipeArray.length; i++) {
+      this.pipeArray[i].x += this.velocityX;
+    }
+
+    // Remove pipes that are off canvas
+    this.pipeArray = this.pipeArray.filter(
+      (pipe) => pipe.x + this.pipeWidth > 0
+    );
   };
+  
+
+  // update() {
+  //   // start spawning
+  //   setInterval(() => placePipes(), 1500);
+  //   const placePipes = () => {
+  //     let topPipe = {
+  //       img: this.topPipeImage,
+  //       x: this.pipeX,
+  //       y: this.pipeX,
+  //       width: this.pipeWidth,
+  //       height: this.pipeHeight,
+  //       passed: false
+  //     };
+  //     this.pipeArray.push(topPipe);
+  //   };
+
+  // };
 
   draw(context) {
     // loop through pipe array
     for (let i = 0; i < this.pipeArray.length; i++) {
-        this.pipeX += this.velocityX;
-        context.drawImage(this.topPipeImage, this.pipeX, this.pipeY, this.pipeWidth, this.pipeHeight);
-    };
-  };
-};
+      this.pipeX += this.velocityX;
+      context.drawImage( this.topPipeImage, this.pipeX, this.pipeY, this.pipeWidth, this.pipeHeight);
+    }
+  }
+}
 
 export class BottomPipes extends TopPipes {
   constructor() {
     super();
     this.bottomPipeImage = bottomPipe;
-  };
+  }
 
-  update() {
+  update() {}
 
-  };
-
-  draw() {
-
-  };
-};
-
-
+  draw() {}
+}
