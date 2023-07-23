@@ -21,7 +21,10 @@ export class TopPipes {
       passed: false,
     };
     this.pipeArray.push(topPipe);
-  }
+
+    this.pipeArray = this.pipeArray.filter((pipe) => pipe.x + pipe.width > 0);
+    console.log(this.pipeArray)
+  };
 
   update() {
     // Update pipe positions
@@ -29,10 +32,7 @@ export class TopPipes {
       this.pipeArray[i].x += this.velocityX;
     }
 
-    // Remove pipes that are off canvas
-    this.pipeArray = this.pipeArray.filter(
-      (pipe) => pipe.x + this.pipeWidth > 0
-    );
+    
   };
   
 
@@ -54,12 +54,8 @@ export class TopPipes {
   // };
 
   draw(context) {
-    // loop through pipe array
-    for (let i = 0; i < this.pipeArray.length; i++) {
-      this.pipeX += this.velocityX;
-      context.drawImage( this.topPipeImage, this.pipeX, this.pipeY, this.pipeWidth, this.pipeHeight);
-    }
-  }
+    context.drawImage( this.topPipeImage, this.pipeX, this.pipeY, this.pipeWidth, this.pipeHeight);
+  };
 }
 
 export class BottomPipes extends TopPipes {

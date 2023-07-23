@@ -22,13 +22,14 @@ window.addEventListener('load', function() {
       };
 
       spawnPipes() {
-        this.topPipes.placePipes(); // Spawn a new pipe
-        this.lastSpawnTime = Date.now();
-        setTimeout(() => this.spawnPipes(), this.spawnPipeInterval);
+        setTimeout(() => {
+            this.topPipes.placePipes(); // Spawn a new pipe
+        }, "1500");
       };
+      
 
       update() {
-
+        this.spawnPipes()
         this.player.update(this.input.keys);
         this.topPipes.update();
         // this.bottomPipe.update();
